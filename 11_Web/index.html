@@ -1,24 +1,62 @@
 <!doctype html>
-<html lang="en">
+<html lang="en-AU">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#11251f" />
-    <title>Tour Companion</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#0d3b32" />
+    <meta name="description" content="ALONORA connects guides, visitors and tour companies through multilingual narration and shared tour knowledge." />
+    <title>ALONORA · Deep in Memory</title>
     <link rel="manifest" href="/manifest.webmanifest" />
     <link rel="stylesheet" href="/styles.css" />
   </head>
-  <body class="landing">
+  <body class="landing alonora-home">
     <main class="landing-card">
-      <div class="brand-mark">TC</div>
-      <p class="eyebrow">AI TOUR GUIDE COPILOT</p>
-      <h1>One tour.<br />Every visitor included.</h1>
-      <p class="lede">A local test space connecting the guide, live narration, visitor questions and tour review.</p>
-      <div class="entry-grid">
-        <a class="entry guide-entry" href="/guide.html"><span>For guides</span><strong>Open guide console →</strong></a>
-        <a class="entry" href="/visitor.html?session=gor-live-001"><span>For visitors</span><strong>Join current tour →</strong></a>
-      </div>
-      <p class="quiet">Prototype · no account required · data resets when the local server restarts</p>
+      <header class="alonora-header">
+        <a class="alonora-wordmark" href="/" aria-label="ALONORA home"><strong>ALONORA</strong><span>DEEP IN MEMORY</span></a>
+        <div class="home-language" role="group" aria-label="Language">
+          <button type="button" data-home-locale="zh-CN">中文</button>
+          <button type="button" data-home-locale="en-AU">EN</button>
+        </div>
+      </header>
+      <section class="home-hero">
+        <p class="eyebrow" data-home-copy="eyebrow">AI TOUR GUIDE PLATFORM</p>
+        <h1 data-home-copy="headline">One journey.<br />Every voice remembered.</h1>
+        <p class="lede" data-home-copy="lede">Connect the guide, every visitor and the tour company in one multilingual journey.</p>
+      </section>
+      <section class="home-entry-grid" aria-label="ALONORA portals">
+        <a class="home-entry home-entry-primary" href="/guide.html">
+          <span class="entry-number">01</span><span class="entry-copy"><small data-home-copy="guideFor">FOR GUIDES</small><strong data-home-copy="guideTitle">Guide console</strong><em data-home-copy="guideDetail">Start the tour, manage languages and hear visitor questions.</em></span><span class="entry-arrow" aria-hidden="true">↗</span>
+        </a>
+        <a class="home-entry" href="/visitor.html?session=gor-live-001">
+          <span class="entry-number">02</span><span class="entry-copy"><small data-home-copy="visitorFor">FOR VISITORS</small><strong data-home-copy="visitorTitle">Join current tour</strong><em data-home-copy="visitorDetail">Listen, ask the guide and share feedback in your language.</em></span><span class="entry-arrow" aria-hidden="true">↗</span>
+        </a>
+        <article class="home-entry home-entry-company" aria-label="Company portal coming soon">
+          <span class="entry-number">03</span><span class="entry-copy"><small data-home-copy="companyFor">FOR TOUR COMPANIES</small><strong data-home-copy="companyTitle">Company operations</strong><em data-home-copy="companyDetail">Dispatch-led tours, content packs and training evidence.</em></span><span class="entry-status" data-home-copy="comingSoon">IN DEVELOPMENT</span>
+        </article>
+      </section>
+      <footer class="home-footer"><p data-home-copy="truth">Public pilot · guide broadcast remains in test mode until the live audio channel is connected</p><p>© 2026 ALONORA</p></footer>
     </main>
+    <script>
+      const HOME_LOCALE_KEY = "alonora-home-locale";
+      const homeCopy = {
+        "en-AU": {eyebrow:"AI TOUR GUIDE PLATFORM",headline:"One journey.<br />Every voice remembered.",lede:"Connect the guide, every visitor and the tour company in one multilingual journey.",guideFor:"FOR GUIDES",guideTitle:"Guide console",guideDetail:"Start the tour, manage languages and hear visitor questions.",visitorFor:"FOR VISITORS",visitorTitle:"Join current tour",visitorDetail:"Listen, ask the guide and share feedback in your language.",companyFor:"FOR TOUR COMPANIES",companyTitle:"Company operations",companyDetail:"Dispatch-led tours, content packs and training evidence.",comingSoon:"IN DEVELOPMENT",truth:"Public pilot · guide broadcast remains in test mode until the live audio channel is connected"},
+        "zh-CN": {eyebrow:"AI 智能导游平台",headline:"一段旅程，<br />每一种声音都被记住。",lede:"连接导游、每一位游客与旅游公司，让多语种讲解、互动和知识沉淀发生在同一段旅程中。",guideFor:"导游入口",guideTitle:"进入导游控制台",guideDetail:"开启行程、管理语言，并查看游客提问。",visitorFor:"游客入口",visitorTitle:"加入当前行程",visitorDetail:"用自己的语言收听讲解、询问导游和提交评价。",companyFor:"旅游公司入口",companyTitle:"公司运营管理",companyDetail:"以派单连接产品线路、内容知识包与培训依据。",comingSoon:"建设中",truth:"公开试用版 · 导游实时广播频道接通前将始终明确显示为测试模式"}
+      };
+      function detectHomeLocale() {
+        const requested = [...(navigator.languages || []), navigator.language].filter(Boolean);
+        return requested.some(language => language.toLowerCase().startsWith("zh")) ? "zh-CN" : "en-AU";
+      }
+      let homeLocale = localStorage.getItem(HOME_LOCALE_KEY) || detectHomeLocale();
+      function applyHomeLocale() {
+        const copy = homeCopy[homeLocale] || homeCopy["en-AU"];
+        document.documentElement.lang = homeLocale;
+        document.querySelectorAll("[data-home-copy]").forEach(node => node.innerHTML = copy[node.dataset.homeCopy]);
+        document.querySelectorAll("[data-home-locale]").forEach(button => button.classList.toggle("active", button.dataset.homeLocale === homeLocale));
+      }
+      document.querySelectorAll("[data-home-locale]").forEach(button => button.addEventListener("click", () => {
+        homeLocale = button.dataset.homeLocale; localStorage.setItem(HOME_LOCALE_KEY, homeLocale); applyHomeLocale();
+      }));
+      applyHomeLocale();
+    </script>
   </body>
 </html>
