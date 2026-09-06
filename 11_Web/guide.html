@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en-AU">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -11,41 +11,41 @@
   <body data-view="guide">
     <header class="topbar">
       <a href="/" class="wordmark"><span>TC</span> Tour Companion</a>
-      <div class="live-pill"><i></i> Live session</div>
+      <div class="topbar-actions"><label class="language-control guide-language-control"><span class="sr-only" data-guide-i18n="uiLanguage">UI language</span><select id="guide-ui-language" aria-label="UI language"></select></label><div class="live-pill"><i></i> <span data-guide-i18n="liveSession">Live session</span></div></div>
     </header>
     <div class="app-shell">
-      <nav class="side-nav" aria-label="Guide sections">
-        <div class="guide-profile"><div class="avatar">AC</div><div><strong>Alex Chen</strong><span>Driver-guide</span></div></div>
-        <button data-panel="today">Today</button>
-        <button class="active" data-panel="live">Live Tour <span class="nav-count" id="visitor-count">0</span></button>
-        <button data-panel="channels">Visitor Channels</button>
-        <button data-panel="review">Review <span class="nav-count" id="review-count">0</span></button>
-        <button data-panel="packs">My Packs</button>
-        <div class="driving-note">Driving mode<br /><strong>Audio first · screen optional</strong></div>
+      <nav class="side-nav" aria-label="Guide sections" data-guide-i18n-aria="guideSections">
+        <div class="guide-profile"><div class="avatar">AC</div><div><strong>Alex Chen</strong><span data-guide-i18n="driverGuide">Driver-guide</span></div></div>
+        <button data-panel="today" data-guide-i18n="today">Today</button>
+        <button class="active" data-panel="live"><span data-guide-i18n="liveTour">Live Tour</span> <span class="nav-count" id="visitor-count">0</span></button>
+        <button data-panel="channels" data-guide-i18n="visitorChannels">Visitor Channels</button>
+        <button data-panel="review"><span data-guide-i18n="review">Review</span> <span class="nav-count" id="review-count">0</span></button>
+        <button data-panel="packs" data-guide-i18n="myPacks">My Packs</button>
+        <div class="driving-note"><span data-guide-i18n="drivingMode">Driving mode</span><br /><strong data-guide-i18n="audioFirst">Audio first · screen optional</strong></div>
       </nav>
       <main class="guide-main">
-        <section class="panel hidden" id="today-panel"><p class="eyebrow">TODAY</p><h1>Great Ocean Road</h1><div class="empty-card">Pickup complete · 11 stops · returning 7:30 pm</div></section>
+        <section class="panel hidden" id="today-panel"><p class="eyebrow" data-guide-i18n="todayUpper">TODAY</p><h1>Great Ocean Road</h1><div class="empty-card" data-guide-i18n="todaySummary">Pickup complete · 11 stops · returning 7:30 pm</div></section>
         <section class="panel" id="live-panel">
-          <div class="section-heading"><div><p class="eyebrow">LIVE TOUR</p><h1 id="route-name">Great Ocean Road</h1></div><button class="icon-button" id="refresh-session" aria-label="Refresh session">↻</button></div>
+          <div class="section-heading"><div><p class="eyebrow" data-guide-i18n="liveTourUpper">LIVE TOUR</p><h1 id="route-name">Great Ocean Road</h1></div><button class="icon-button" id="refresh-session" aria-label="Refresh session" data-guide-i18n-aria="refreshSession">↻</button></div>
           <div class="live-grid">
             <article class="now-card">
-              <div class="now-top"><span class="status-dot">NOW</span><span id="current-topic">Current story</span></div>
-              <p class="place-kicker">Current place</p><h2 id="current-place">Twelve Apostles</h2>
-              <p class="narrative-preview">Waves, limestone and time — the story playing across every visitor channel.</p>
-              <div class="audio-actions"><button class="primary" id="guide-test-tone">▶ Test guide earpiece</button><button class="secondary" id="mute-all">Mute</button></div>
-              <div class="device-status" id="device-status">Audio route follows this device’s system settings.</div>
+              <div class="now-top"><span class="status-dot" data-guide-i18n="now">NOW</span><span id="current-topic">Current story</span></div>
+              <p class="place-kicker" data-guide-i18n="currentPlace">Current place</p><h2 id="current-place">Twelve Apostles</h2>
+              <p class="narrative-preview" data-guide-i18n="narrativePreview">Waves, limestone and time — the story playing across every visitor channel.</p>
+              <div class="audio-actions"><button class="primary" id="guide-test-tone" data-guide-i18n="testEarpiece">▶ Test guide earpiece</button><button class="secondary" id="mute-all" data-guide-i18n="mute">Mute</button></div>
+              <div class="device-status" id="device-status" data-guide-i18n="audioRoute">Audio route follows this device’s system settings.</div>
             </article>
             <aside class="join-card">
-              <p class="eyebrow">JOIN THIS TOUR</p><div class="qr-frame"><img id="join-qr" alt="QR code to join this tour" /></div>
-              <h3 id="join-code">GOR-4821</h3><p>Visitors scan once. Listening is optional; questions and rating stay available.</p>
-              <button class="text-button" id="copy-link">Copy visitor link</button>
+              <p class="eyebrow" data-guide-i18n="joinTourUpper">JOIN THIS TOUR</p><div class="qr-frame"><img id="join-qr" alt="QR code to join this tour" data-guide-i18n-alt="joinQrAlt" /></div>
+              <h3 id="join-code">GOR-4821</h3><p data-guide-i18n="joinHelp">Visitors scan once. Listening is optional; questions and rating stay available.</p>
+              <button class="text-button" id="copy-link" data-guide-i18n="copyVisitorLink">Copy visitor link</button>
             </aside>
           </div>
-          <section class="queue-section"><div class="section-heading"><div><p class="eyebrow">ASK THE GUIDE</p><h2>Visitor queue</h2></div><span class="queue-badge" id="question-count">0 waiting</span></div><div id="question-list" class="question-list"><div class="empty-card">No questions yet. Keep your eyes on the road.</div></div></section>
+          <section class="queue-section"><div class="section-heading"><div><p class="eyebrow" data-guide-i18n="askGuideUpper">ASK THE GUIDE</p><h2 data-guide-i18n="visitorQueue">Visitor queue</h2></div><span class="queue-badge" id="question-count">0 waiting</span></div><div id="question-list" class="question-list"><div class="empty-card" data-guide-i18n="noQuestions">No questions yet. Keep your eyes on the road.</div></div></section>
         </section>
-        <section class="panel hidden" id="channels-panel"><p class="eyebrow">VISITOR CHANNELS</p><h1>Personal audio</h1><div class="empty-card" id="channel-summary">No visitors connected yet.</div><div class="device-card"><div><h2>Guide audio output</h2><p>Connect Bluetooth first, then choose an output when your browser supports it.</p></div><button class="primary" id="choose-output">Choose output</button><audio id="test-audio"></audio><p id="output-support" class="quiet"></p></div></section>
-        <section class="panel hidden" id="review-panel"><p class="eyebrow">TOUR REVIEW</p><h1>Visitor engagement</h1><div class="review-grid"><div class="metric"><span>Average</span><strong id="average-rating">—</strong></div><div class="metric"><span>Ratings</span><strong id="rating-count">0</strong></div><div class="metric"><span>Questions</span><strong id="questions-total">0</strong></div></div><div id="rating-list" class="rating-list"><div class="empty-card">Ratings will appear here during the tour.</div></div></section>
-        <section class="panel hidden" id="packs-panel"><p class="eyebrow">MY PACKS</p><h1>Ready for today</h1><div class="pack-card"><span class="pack-icon">GOR</span><div><h2>Great Ocean Road Essentials</h2><p>11 places · 6 languages · local prototype content</p></div><span class="ready">Ready</span></div></section>
+        <section class="panel hidden" id="channels-panel"><p class="eyebrow" data-guide-i18n="visitorChannelsUpper">VISITOR CHANNELS</p><h1 data-guide-i18n="audioLanguageSettings">Audio &amp; language settings</h1><div class="empty-card" id="channel-summary">No visitors connected yet.</div><div class="language-settings" aria-labelledby="language-settings-title"><div><h2 id="language-settings-title" data-guide-i18n="independentLanguages">Independent language controls</h2><p data-guide-i18n="independentLanguagesHelp">Changing one setting never changes the others.</p></div><div class="settings-grid"><label><span data-guide-i18n="earpieceLanguage">Guide earpiece prompts</span><select id="guide-earpiece-language" data-guide-preference="earpieceLanguage"></select></label><label><span data-guide-i18n="narrationLanguage">Guide narration language</span><select id="guide-narration-language" data-guide-preference="narrationLanguage"></select></label><label><span data-guide-i18n="publicLanguage">Public playback language</span><select id="guide-public-language" data-guide-preference="publicLanguage"></select></label><label><span data-guide-i18n="visitorLanguage">Visitor language</span><select id="guide-visitor-language" data-guide-preference="visitorLanguage"></select></label></div><p class="preference-note" id="preference-status" data-guide-i18n="savedOnDevice">Saved in this guide profile on this device.</p></div><div class="device-card"><div><h2 data-guide-i18n="guideAudioOutput">Guide audio output</h2><p data-guide-i18n="connectBluetooth">Connect Bluetooth first, then choose an output when your browser supports it.</p></div><button class="primary" id="choose-output" data-guide-i18n="chooseOutput">Choose output</button><audio id="test-audio"></audio><p id="output-support" class="quiet"></p></div></section>
+        <section class="panel hidden" id="review-panel"><p class="eyebrow" data-guide-i18n="tourReviewUpper">TOUR REVIEW</p><h1 data-guide-i18n="visitorEngagement">Visitor engagement</h1><div class="review-grid"><div class="metric"><span data-guide-i18n="average">Average</span><strong id="average-rating">—</strong></div><div class="metric"><span data-guide-i18n="ratings">Ratings</span><strong id="rating-count">0</strong></div><div class="metric"><span data-guide-i18n="questions">Questions</span><strong id="questions-total">0</strong></div></div><div id="rating-list" class="rating-list"><div class="empty-card" data-guide-i18n="ratingsEmpty">Ratings will appear here during the tour.</div></div></section>
+        <section class="panel hidden" id="packs-panel"><p class="eyebrow" data-guide-i18n="myPacksUpper">MY PACKS</p><h1 data-guide-i18n="readyToday">Ready for today</h1><div class="pack-card"><span class="pack-icon">GOR</span><div><h2>Great Ocean Road Essentials</h2><p data-guide-i18n="packSummary">11 places · 6 languages · local prototype content</p></div><span class="ready" data-guide-i18n="ready">Ready</span></div></section>
       </main>
     </div>
     <div class="toast" id="toast" role="status"></div>
