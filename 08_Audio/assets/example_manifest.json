@@ -1,0 +1,30 @@
+{
+  "manifest_id": "audio-assets.example.v1",
+  "status": "contract-example-not-real-recording",
+  "assets": [{
+    "audio_asset_id": "audio-example-001",
+    "session_id": "tour-example-001",
+    "started_at": "2026-09-06T10:42:18+10:00",
+    "ended_at": "2026-09-06T10:45:51+10:00",
+    "timezone": "Australia/Melbourne",
+    "place_id": "twelve-apostles",
+    "route_id": "great-ocean-road",
+    "speaker_scope": "guide",
+    "language": "zh-CN",
+    "original_audio_uri": "encrypted://audio-example-001/original",
+    "checksum_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+    "transcript_id": "transcript-example-001",
+    "narrative_script_id": "script-example-001",
+    "owner_id": "guide-example",
+    "consent_status": "guide_only",
+    "retention_class": "long_term_original",
+    "rights": {
+      "internal_learning": true,
+      "public_playback": false,
+      "commercial_content": false,
+      "model_training": false,
+      "voice_cloning": false
+    }
+  }]
+}
+
