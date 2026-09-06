@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>游客服务 · AI Tour Guide</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <main>
+      <p class="eyebrow">AI TOUR GUIDE · VISITOR</p>
+      <h1>选择服务</h1>
+      <section class="entries" aria-label="游客服务入口">
+        <button type="button" data-entry="system-narration"><strong>系统讲解</strong><span>播放景点内容</span></button>
+        <button type="button" data-entry="listen-guide" aria-expanded="false"><strong>听导游</strong><span>查看实时频道状态</span></button>
+        <button type="button" data-entry="ask-guide"><strong>问导游</strong><span>向导游提交问题</span></button>
+        <button type="button" data-entry="rate-guide"><strong>评价导游</strong><span>行程结束后反馈</span></button>
+      </section>
+      <section class="channel-panel" aria-label="听导游频道" hidden>
+        <div class="status-row"><span class="dot" aria-hidden="true"></span><strong>频道未连接</strong></div>
+        <p class="channel-status"></p>
+        <dl>
+          <div><dt>语音识别 STT</dt><dd>未配置</dd></div>
+          <div><dt>实时翻译</dt><dd>未配置</dd></div>
+          <div><dt>语音播放 TTS</dt><dd>未配置</dd></div>
+        </dl>
+      </section>
+    </main>
+    <script src="live-channel.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
+

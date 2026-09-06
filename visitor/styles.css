@@ -1,0 +1,21 @@
+:root { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; color: #13231a; background: #f3f5ef; }
+* { box-sizing: border-box; }
+body { margin: 0; }
+main { width: min(100%, 600px); margin: 0 auto; padding: max(32px, env(safe-area-inset-top)) 20px 48px; }
+.eyebrow { color: #607567; font-size: 12px; font-weight: 750; letter-spacing: .13em; }
+h1 { margin: 12px 0 24px; font-size: 40px; }
+.entries { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+button { min-height: 132px; padding: 18px; border: 1px solid #d4ddd5; border-radius: 18px; background: #fff; color: inherit; text-align: left; box-shadow: 0 8px 24px rgba(30, 50, 38, .05); }
+button strong, button span { display: block; }
+button strong { font-size: 20px; }
+button span { margin-top: 9px; color: #66736b; line-height: 1.4; }
+button:focus-visible { outline: 3px solid #2f7f53; outline-offset: 2px; }
+.channel-panel { margin-top: 16px; padding: 18px; border: 1px solid #e0c9a9; border-radius: 18px; background: #fff9ee; }
+.status-row { display: flex; align-items: center; gap: 9px; }
+.dot { width: 10px; height: 10px; border-radius: 50%; background: #a56a24; }
+.channel-status { color: #745532; }
+dl { margin: 16px 0 0; }
+dl div { display: flex; justify-content: space-between; padding: 10px 0; border-top: 1px solid #eadbc5; }
+dt { font-weight: 600; } dd { margin: 0; color: #805f39; }
+@media (max-width: 420px) { .entries { grid-template-columns: 1fr; } button { min-height: 104px; } }
+
