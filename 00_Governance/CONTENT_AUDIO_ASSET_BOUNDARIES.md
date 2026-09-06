@@ -45,3 +45,20 @@ The interface must not combine these into one ambiguous “share” switch. Publ
 does not grant voice cloning, model training or commercial reuse. Commercial sharing must
 identify the reward recipient; actual rewards follow verified usage, quality, reuse and
 the published settlement rules rather than upload volume alone.
+
+## Dispute records and evidence preservation
+
+Retained original audio may support fact-finding in a guide/visitor dispute. The product
+must describe it as an **auxiliary dispute record**, not promise that a recording will be
+accepted as legal evidence. An evidence package references the untouched original audio,
+exact capture times and timezone, tour/assignment, segment and authorized location events,
+the recording-notice event, and a SHA-256 manifest.
+
+Every creation, verification, access, export and evidence-hold action is appended to a
+hash-linked custody log. An active hold blocks ordinary deletion until an authorized
+release is recorded. Transcripts, summaries and edited clips are derivatives and must
+never replace the original. Access is limited to authorized case handling; evidence use
+does not grant public-learning, commercial, model-training or voice-cloning rights.
+
+Recording notice/consent, retention, disclosure and access rules must be configured for
+the operating jurisdiction and reviewed before production launch.
