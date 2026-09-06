@@ -93,3 +93,12 @@ One Tour, Multiple Personal Audio Channels.
 - 普通话与粤语可分别选择
 - 游客提问可以用所选语言回答
 - 导游无需持续操作屏幕
+
+## 9. Provider implementation baseline
+
+- Live speech translation provider: OpenAI `gpt-realtime-translate`
+- Browser transport: WebRTC with a server-issued short-lived client secret
+- The standard API key must remain server-side and must never be sent to a browser
+- Source and translated transcripts should be retained with clear timestamps when recording consent applies
+- Provider readiness and guide-broadcast connectivity are separate states; the UI must not call a device microphone test a live guide broadcast
+- Production listen-along requires one translation session per target language and a media relay that republishes the guide's source track to visitor channels

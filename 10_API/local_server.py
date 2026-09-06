@@ -14,9 +14,11 @@ ROOT = Path(__file__).resolve().parents[1]
 WEB_ROOT = ROOT / "11_Web"
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from tour_session import TourSessionStore  # noqa: E402
+from openai_translation import TranslationProvider  # noqa: E402
 
 
 STORE = TourSessionStore()
+TRANSLATION = TranslationProvider(ROOT)
 
 
 class Handler(SimpleHTTPRequestHandler):
@@ -44,7 +46,9 @@ class Handler(SimpleHTTPRequestHandler):
         parts = [part for part in parsed.path.split("/") if part]
         try:
             if parsed.path == "/api/health":
-                return self.send_json({"ok": True, "mode": "local-prototype"})
+                return self.send_json({"ok": True, "mode": "local-prototype", "translation": TRANSLATION.status()})
+            if parsed.path == "/api/translation/status":
+                return self.send_json(TRANSLATION.status())
             if parsed.path == "/api/config":
                 return self.send_json({
                     "mobile_base_url": f"http://{lan_ip()}:{self.server.server_port}",
@@ -70,6 +74,10 @@ class Handler(SimpleHTTPRequestHandler):
         parts = [part for part in urlparse(self.path).path.split("/") if part]
         try:
             payload = self.body()
+            if parts == ["api", "translation", "client-secret"]:
+                return self.send_json(TRANSLATION.create_client_secret(
+                    payload.get("target_locale", ""), payload.get("visitor_id") or self.client_address[0]
+                ), 201)
             if len(parts) == 4 and parts[:2] == ["api", "sessions"] and parts[3] == "join":
                 return self.send_json(STORE.join(parts[2], payload.get("locale", "en-AU")), 201)
             if len(parts) == 4 and parts[:2] == ["api", "sessions"] and parts[3] == "questions":
