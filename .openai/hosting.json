@@ -1,6 +1,9 @@
 {
   "project_id": "appgprj_6a9d4c637f388191a1aaaa99a4cfd2ac",
-  "static": {
-    "directory": "dist/client"
+  "d1": {
+    "binding": "DB"
+  },
+  "r2": {
+    "binding": "AUDIO"
   }
 }
