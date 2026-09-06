@@ -53,6 +53,7 @@ class Handler(SimpleHTTPRequestHandler):
                 return self.send_json({
                     "mobile_base_url": f"http://{lan_ip()}:{self.server.server_port}",
                     "session_id": "gor-live-001",
+                    "visitor_join_url": f"http://{lan_ip()}:{self.server.server_port}/visitor.html?session=gor-live-001&join=gor-4821-visitor",
                 })
             if len(parts) == 3 and parts[:2] == ["api", "sessions"]:
                 return self.send_json(STORE.snapshot(parts[2]))
@@ -79,6 +80,8 @@ class Handler(SimpleHTTPRequestHandler):
                     payload.get("target_locale", ""), payload.get("visitor_id") or self.client_address[0]
                 ), 201)
             if len(parts) == 4 and parts[:2] == ["api", "sessions"] and parts[3] == "join":
+                if payload.get("join_token") != "gor-4821-visitor":
+                    return self.send_json({"error": "Scan the guide's QR code to join this tour"}, 403)
                 return self.send_json(STORE.join(parts[2], payload.get("locale", "en-AU")), 201)
             if len(parts) == 4 and parts[:2] == ["api", "sessions"] and parts[3] == "questions":
                 text = payload.get("text", "").strip()

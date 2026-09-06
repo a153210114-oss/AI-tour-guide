@@ -1,4 +1,5 @@
 const SESSION_ID = "gor-live-001";
+const JOIN_TOKEN = "gor-4821-visitor";
 const MODEL = "gpt-realtime-translate";
 const SUPPORTED = { "en-AU": "en", "zh-CN": "zh", "zh-HK": "zh", "yue-HK": "yue", "ja-JP": "ja", "es-ES": "es" };
 
@@ -60,7 +61,7 @@ async function api(request, env, url) {
   const providerStatus = { configured, provider: configured ? "openai" : null, model: configured ? MODEL : null, mode: configured ? "provider-ready" : "test", guide_broadcast_connected: false, supported_locales: Object.keys(SUPPORTED).sort() };
 
   if (request.method === "GET" && path === "/api/health") return json({ ok: true, mode: "hosted-prototype", translation: providerStatus });
-  if (request.method === "GET" && path === "/api/config") return json({ mobile_base_url: url.origin, session_id: SESSION_ID });
+  if (request.method === "GET" && path === "/api/config") return json({ mobile_base_url: url.origin, session_id: SESSION_ID, visitor_join_url: `${url.origin}/visitor.html?session=${SESSION_ID}&join=${JOIN_TOKEN}` });
   if (request.method === "GET" && path === "/api/translation/status") return json(providerStatus);
   if (request.method === "GET" && path === "/api/company") return json(state.company);
   if (request.method === "GET" && parts.length === 3 && parts[0] === "api" && parts[1] === "sessions") return parts[2] === SESSION_ID ? json(snapshot()) : error("Tour session not found", 404);
@@ -118,6 +119,7 @@ async function api(request, env, url) {
   }
   if (parts[0] !== "api" || parts[1] !== "sessions" || parts[2] !== SESSION_ID) return error("Not found", 404);
   if (parts.length === 4 && parts[3] === "join") {
+    if (payload.join_token !== JOIN_TOKEN) return error("Scan the guide's QR code to join this tour", 403);
     const visitorId = id("visitor"); state.visitors[visitorId] = { locale: payload.locale || "en-AU", joined_at: now() };
     return json({ visitor_id: visitorId, session: snapshot() }, 201);
   }

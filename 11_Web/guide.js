@@ -41,7 +41,7 @@ let session;
 let visitorUrl = `${location.origin}/visitor.html?session=${SESSION_ID}`;
 async function configureJoinLink() {
   const config = await api("/api/config");
-  visitorUrl = `${config.mobile_base_url}/visitor.html?session=${SESSION_ID}`;
+  visitorUrl = config.visitor_join_url;
   document.getElementById("join-qr").src = `https://quickchart.io/qr?size=320&margin=2&text=${encodeURIComponent(visitorUrl)}`;
 }
 
@@ -75,7 +75,6 @@ async function answerQuestion(event) {
   await api(`/api/sessions/${SESSION_ID}/questions/${event.currentTarget.dataset.answer}/answer`, {method:"POST", body:JSON.stringify({answer:input.value})}); toast(t("answerSent")); refresh();
 }
 document.getElementById("refresh-session").addEventListener("click", refresh);
-document.getElementById("copy-link").addEventListener("click", async () => { await navigator.clipboard.writeText(visitorUrl); toast(t("visitorLinkCopied")); });
 document.getElementById("mute-all").addEventListener("click", () => { speechSynthesis.cancel(); toast(t("narrationMuted")); });
 
 async function playTestTone(audioElement = document.getElementById("test-audio")) {
