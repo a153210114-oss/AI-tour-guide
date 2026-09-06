@@ -7,6 +7,7 @@ segments = import_module("09_Runtime.tour_session.segments")
 AudioAsset = audio.AudioAsset
 ConsentStatus = audio.ConsentStatus
 UsageRights = audio.UsageRights
+SharingMode = audio.SharingMode
 SegmentType = segments.SegmentType
 TourSegment = segments.TourSegment
 
@@ -35,15 +36,50 @@ class AudioAssetTests(TestCase):
 
     def test_commercial_use_requires_explicit_consent(self):
         with self.assertRaises(ValueError):
-            make_audio(rights=UsageRights(commercial_content=True))
+            make_audio(
+                rights=UsageRights(commercial_content=True),
+                sharing_mode=SharingMode.COMMERCIAL_REWARD,
+                reward_recipient_id="guide-1",
+            )
 
     def test_explicit_consent_can_grant_separate_rights(self):
         asset = make_audio(
             consent_status=ConsentStatus.EXPLICIT,
             rights=UsageRights(commercial_content=True, public_playback=False),
+            sharing_mode=SharingMode.COMMERCIAL_REWARD,
+            reward_recipient_id="guide-1",
         )
         self.assertTrue(asset.rights.commercial_content)
         self.assertFalse(asset.rights.public_playback)
+        self.assertTrue(asset.contribution_reward_eligible)
+
+    def test_public_learning_share_is_not_automatically_commercial(self):
+        asset = make_audio(
+            consent_status=ConsentStatus.EXPLICIT,
+            rights=UsageRights(public_learning=True),
+            sharing_mode=SharingMode.PUBLIC_LEARNING,
+        )
+        self.assertTrue(asset.rights.public_learning)
+        self.assertFalse(asset.rights.commercial_content)
+        self.assertFalse(asset.contribution_reward_eligible)
+
+    def test_combined_share_supports_learning_and_rewards(self):
+        asset = make_audio(
+            consent_status=ConsentStatus.EXPLICIT,
+            rights=UsageRights(public_learning=True, commercial_content=True),
+            sharing_mode=SharingMode.PUBLIC_LEARNING_AND_COMMERCIAL_REWARD,
+            reward_recipient_id="guide-1",
+        )
+        self.assertTrue(asset.rights.public_learning)
+        self.assertTrue(asset.contribution_reward_eligible)
+
+    def test_commercial_share_must_name_reward_recipient(self):
+        with self.assertRaises(ValueError):
+            make_audio(
+                consent_status=ConsentStatus.EXPLICIT,
+                rights=UsageRights(commercial_content=True),
+                sharing_mode=SharingMode.COMMERCIAL_REWARD,
+            )
 
     def test_spoken_segment_must_reference_retained_audio(self):
         with self.assertRaises(ValueError):
@@ -54,4 +90,3 @@ class AudioAssetTests(TestCase):
                 timezone="Australia/Melbourne", place_id="twelve-apostles",
                 latitude=-38.6621, longitude=143.1051,
             )
-
