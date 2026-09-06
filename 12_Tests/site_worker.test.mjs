@@ -29,6 +29,17 @@ test("visitor session requires the guide QR join credential", async () => {
   assert.equal(response.status, 403);
 });
 
+test("company branding is dynamic while rideshare keeps ALONORA", async () => {
+  await call("/api/company/profile", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ name: "Ocean Road Tours", logo_data_url: "data:image/png;base64,AA==" }) });
+  const companyBrand = await (await call("/api/brand")).json();
+  assert.equal(companyBrand.scope, "company");
+  assert.equal(companyBrand.name, "Ocean Road Tours");
+  assert.equal(companyBrand.powered_by_alonora, true);
+  const rideshareBrand = await (await call("/api/brand?mode=rideshare")).json();
+  assert.equal(rideshareBrand.scope, "platform");
+  assert.equal(rideshareBrand.name, "ALONORA");
+});
+
 test("serves static assets through the Sites binding", async () => {
   assert.equal(await (await call("/")).text(), "/index.html");
   assert.equal(await (await call("/guide.html")).text(), "/guide.html");

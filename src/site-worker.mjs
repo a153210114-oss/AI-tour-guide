@@ -5,7 +5,7 @@ const SUPPORTED = { "en-AU": "en", "zh-CN": "zh", "zh-HK": "zh", "yue-HK": "yue"
 
 const state = globalThis.__alonoraState ||= {
   visitors: {}, questions: [], ratings: [],
-  company: { name: "ALONORA Demo Tours", logo_data_url: "", guides: [{ id: "guide-alex-001", number: "G-001", name: "Alex Chen", route: "Great Ocean Road · Day Tour", session_id: SESSION_ID }], dispatches: [] },
+  company: { id: "company-demo-001", name: "ALONORA Demo Tours", logo_data_url: "", guides: [{ id: "guide-alex-001", number: "G-001", name: "Alex Chen", route: "Great Ocean Road · Day Tour", session_id: SESSION_ID }], dispatches: [] },
 };
 
 const now = () => new Date().toISOString();
@@ -63,6 +63,16 @@ async function api(request, env, url) {
   if (request.method === "GET" && path === "/api/health") return json({ ok: true, mode: "hosted-prototype", translation: providerStatus });
   if (request.method === "GET" && path === "/api/config") return json({ mobile_base_url: url.origin, session_id: SESSION_ID, visitor_join_url: `${url.origin}/visitor.html?session=${SESSION_ID}&join=${JOIN_TOKEN}` });
   if (request.method === "GET" && path === "/api/translation/status") return json(providerStatus);
+  if (request.method === "GET" && path === "/api/brand") {
+    const rideshare = url.searchParams.get("mode") === "rideshare";
+    const companyBrand = !rideshare && state.company.logo_data_url;
+    return json({
+      scope: companyBrand ? "company" : "platform",
+      name: companyBrand ? state.company.name : "ALONORA",
+      logo_url: companyBrand ? state.company.logo_data_url : "/assets/alonora-logo-card.jpg",
+      powered_by_alonora: Boolean(companyBrand),
+    });
+  }
   if (request.method === "GET" && path === "/api/company") return json(state.company);
   if (request.method === "GET" && parts.length === 3 && parts[0] === "api" && parts[1] === "sessions") return parts[2] === SESSION_ID ? json(snapshot()) : error("Tour session not found", 404);
   if (request.method === "GET" && parts.length === 4 && parts[0] === "api" && parts[1] === "sessions" && parts[3] === "narration") return parts[2] === SESSION_ID ? json(narration()) : error("Tour session not found", 404);

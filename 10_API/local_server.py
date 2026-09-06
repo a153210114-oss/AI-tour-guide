@@ -55,6 +55,8 @@ class Handler(SimpleHTTPRequestHandler):
                     "session_id": "gor-live-001",
                     "visitor_join_url": f"http://{lan_ip()}:{self.server.server_port}/visitor.html?session=gor-live-001&join=gor-4821-visitor",
                 })
+            if parsed.path == "/api/brand":
+                return self.send_json({"scope": "platform", "name": "ALONORA", "logo_url": "/assets/alonora-logo-card.jpg", "powered_by_alonora": False})
             if len(parts) == 3 and parts[:2] == ["api", "sessions"]:
                 return self.send_json(STORE.snapshot(parts[2]))
             if len(parts) == 4 and parts[:2] == ["api", "sessions"] and parts[3] == "narration":

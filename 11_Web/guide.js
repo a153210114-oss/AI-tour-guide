@@ -91,7 +91,7 @@ document.getElementById("choose-output").addEventListener("click", async () => {
   } catch (error) { toast(error.name === "NotAllowedError" ? t("selectionCancelled") : error.message); }
 });
 document.getElementById("output-support").textContent = navigator.mediaDevices?.selectAudioOutput ? t("specificOutput") : t("systemOutput");
-applyGuideLanguage(); configureJoinLink().catch((error) => toast(error.message)); refresh(); setInterval(refresh, 2500);
+applyGuideLanguage(); applySessionBrand().catch(() => {}); configureJoinLink().catch((error) => toast(error.message)); refresh(); setInterval(refresh, 2500);
 
 if (document.modelContext?.registerTool) {
   const controller = new AbortController();
