@@ -31,7 +31,7 @@
           <span class="entry-number">02</span><span class="entry-copy"><small data-home-copy="visitorFor">FOR VISITORS</small><strong data-home-copy="visitorTitle">Join current tour</strong><em data-home-copy="visitorDetail">Listen, ask the guide and share feedback in your language.</em></span><span class="entry-arrow" aria-hidden="true">↗</span>
         </a>
         <a class="home-entry home-entry-company" href="/company.html">
-          <span class="entry-number">03</span><span class="entry-copy"><small data-home-copy="companyFor">FOR TOUR COMPANIES</small><strong data-home-copy="companyTitle">Company operations</strong><em data-home-copy="companyDetail">Company identity, guide numbers, assignments and visitor QR codes.</em></span><span class="entry-arrow" aria-hidden="true">↗</span>
+          <span class="entry-number">03</span><span class="entry-copy"><small data-home-copy="companyFor">FOR TOUR COMPANIES</small><strong data-home-copy="companyTitle">Company operations</strong><em data-home-copy="companyDetail">Company identity, batch dispatch and guide channel monitoring.</em></span><span class="entry-arrow" aria-hidden="true">↗</span>
         </a>
       </section>
       <footer class="home-footer"><p data-home-copy="truth">Public pilot · guide broadcast remains in test mode until the live audio channel is connected</p><p>© 2026 ALONORA</p></footer>
@@ -39,8 +39,8 @@
     <script>
       const HOME_LOCALE_KEY = "alonora-home-locale";
       const homeCopy = {
-        "en-AU": {eyebrow:"AI TOUR GUIDE PLATFORM",headline:"One journey.<br />Every voice remembered.",lede:"Connect the guide, every visitor and the tour company in one multilingual journey.",guideFor:"FOR GUIDES",guideTitle:"Guide console",guideDetail:"Start the tour, manage languages and hear visitor questions.",visitorFor:"FOR VISITORS",visitorTitle:"Join current tour",visitorDetail:"Listen, ask the guide and share feedback in your language.",companyFor:"FOR TOUR COMPANIES",companyTitle:"Company operations",companyDetail:"Company identity, guide numbers, assignments and visitor QR codes.",truth:"Public pilot · guide broadcast remains in test mode until the live audio channel is connected"},
-        "zh-CN": {eyebrow:"AI 智能导游平台",headline:"一段旅程，<br />每一种声音都被记住。",lede:"连接导游、每一位游客与旅游公司，让多语种讲解、互动和知识沉淀发生在同一段旅程中。",guideFor:"导游入口",guideTitle:"进入导游控制台",guideDetail:"开启行程、管理语言，并查看游客提问。",visitorFor:"游客入口",visitorTitle:"加入当前行程",visitorDetail:"用自己的语言收听讲解、询问导游和提交评价。",companyFor:"旅游公司入口",companyTitle:"公司运营管理",companyDetail:"设置公司标识、导游编号、线路分配和游客二维码。",truth:"公开试用版 · 导游实时广播频道接通前将始终明确显示为测试模式"}
+        "en-AU": {eyebrow:"AI TOUR GUIDE PLATFORM",headline:"One journey.<br />Every voice remembered.",lede:"Connect the guide, every visitor and the tour company in one multilingual journey.",guideFor:"FOR GUIDES",guideTitle:"Guide console",guideDetail:"Start the tour, manage languages and hear visitor questions.",visitorFor:"FOR VISITORS",visitorTitle:"Join current tour",visitorDetail:"Listen, ask the guide and share feedback in your language.",companyFor:"FOR TOUR COMPANIES",companyTitle:"Company operations",companyDetail:"Company identity, batch dispatch and guide channel monitoring.",truth:"Public pilot · guide broadcast remains in test mode until the live audio channel is connected"},
+        "zh-CN": {eyebrow:"AI 智能导游平台",headline:"一段旅程，<br />每一种声音都被记住。",lede:"连接导游、每一位游客与旅游公司，让多语种讲解、互动和知识沉淀发生在同一段旅程中。",guideFor:"导游入口",guideTitle:"进入导游控制台",guideDetail:"开启行程、管理语言，并查看游客提问。",visitorFor:"游客入口",visitorTitle:"加入当前行程",visitorDetail:"用自己的语言收听讲解、询问导游和提交评价。",companyFor:"旅游公司入口",companyTitle:"公司运营管理",companyDetail:"设置公司标识、批量派单并按导游选择收听频道。",truth:"公开试用版 · 导游实时广播频道接通前将始终明确显示为测试模式"}
       };
       function detectHomeLocale() {
         const requested = [...(navigator.languages || []), navigator.language].filter(Boolean);

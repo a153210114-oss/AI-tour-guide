@@ -15,12 +15,12 @@
     <main class="company-main">
       <section class="company-intro">
         <p class="eyebrow">COMPANY OPERATIONS</p>
-        <h1>公司标识、导游编号与游客入口</h1>
-        <p>每位导游拥有公司内部唯一编号与专属二维码。游客扫码进入该导游当前行程的对话页面。</p>
+        <h1>批量派单与导游频道监控</h1>
+        <p>导游是持续身份，车辆只是当天排单属性。游客二维码由导游手机临时展示，公司可按导游查看并进入其收听频道。</p>
         <span class="pilot-badge">试用版 · 数据暂未永久保存</span>
       </section>
       <section class="company-card dispatch-import">
-        <div class="company-card-title"><span>01</span><div><h2>批量导入今日排单</h2><p>一次导入 20、50 辆车；系统按排单建立司机、线路、产品和游客入口。</p></div></div>
+          <div class="company-card-title"><span>01</span><div><h2>批量导入今日排单</h2><p>一次导入 20、50 辆车；系统按人匹配导游，再分配当天车辆、线路和产品。</p></div></div>
         <div class="dispatch-toolbar">
           <label class="file-button">选择 CSV 文件<input id="dispatch-file" type="file" accept=".csv,text/csv,text/plain" /></label>
           <button type="button" id="load-dispatch-example">载入示例</button>
@@ -44,7 +44,7 @@
         </section>
       </div>
       <section class="company-card company-guides">
-        <div class="company-card-title"><span>03</span><div><h2>今日车辆、导游与二维码</h2><p>每条派单对应一个游客入口；二维码可打印或放在车辆座椅背面。</p></div></div>
+        <div class="company-card-title"><span>03</span><div><h2>导游频道监控</h2><p>按导游选择要收听的频道。车辆仅显示当天分配，不承载固定二维码。</p></div></div>
         <div id="company-guide-list" class="company-guide-list"></div>
       </section>
     </main>

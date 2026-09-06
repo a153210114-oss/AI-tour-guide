@@ -13,12 +13,8 @@ function renderCompany() {
   const assignments = company.dispatches?.length ? company.dispatches.map(dispatch => ({...dispatch, id:dispatch.guide_id, number:dispatch.guide_number, name:dispatch.guide_name})) : company.guides;
   document.getElementById("company-guide-list").innerHTML = assignments.map(guide => {
     const link = visitorLink(guide);
-    const qr = `https://quickchart.io/qr?size=260&margin=2&text=${encodeURIComponent(link)}`;
-    return `<article class="company-guide-row"><div class="guide-identity"><span>${escapeHtml(guide.number)}${guide.vehicle ? ` · 车辆 ${escapeHtml(guide.vehicle)}` : ""}</span><strong>${escapeHtml(guide.name)}</strong><small>${escapeHtml(guide.route)}</small>${guide.product ? `<small>${escapeHtml(guide.product)} · ${guide.duration_days} 日游${guide.pickup ? ` · ${escapeHtml(guide.pickup)}` : ""}</small>` : ""}</div><div class="guide-qr"><img src="${qr}" alt="${escapeHtml(guide.name)} visitor QR code" /><small>游客扫码进入对话</small></div><div class="guide-links"><a href="${link}" target="_blank">测试游客入口 ↗</a><button data-copy="${escapeHtml(link)}">复制链接</button></div></article>`;
+    return `<article class="company-guide-row monitor-row"><div class="guide-identity"><span>${escapeHtml(guide.number)}${guide.vehicle ? ` · 今日车辆 ${escapeHtml(guide.vehicle)}` : ""}</span><strong>${escapeHtml(guide.name)}</strong><small>${escapeHtml(guide.route)}</small>${guide.product ? `<small>${escapeHtml(guide.product)} · ${guide.duration_days} 日游${guide.pickup ? ` · ${escapeHtml(guide.pickup)}` : ""}</small>` : ""}</div><div class="channel-state"><i></i><strong>导游直播未连接</strong><small>当前为测试模式</small></div><div class="guide-links"><a href="${link}" target="_blank">打开收听页 ↗</a></div></article>`;
   }).join("");
-  document.querySelectorAll("[data-copy]").forEach(button => button.addEventListener("click", async () => {
-    await navigator.clipboard.writeText(button.dataset.copy); toast("游客链接已复制");
-  }));
 }
 async function loadCompany() { company = await api("/api/company"); renderCompany(); }
 document.getElementById("company-logo-file").addEventListener("change", event => {
@@ -56,7 +52,7 @@ document.getElementById("import-dispatches").addEventListener("click", async () 
     const rows = parseDispatchRows(document.getElementById("dispatch-data").value);
     const result = await api("/api/company/dispatches/import", {method:"POST", body:JSON.stringify({rows})});
     company = result.company; renderCompany();
-    const node = document.getElementById("dispatch-result"); node.classList.remove("hidden"); node.textContent = `已完成：${result.imported_count} 条排单已分配，并生成对应游客二维码。`;
+    const node = document.getElementById("dispatch-result"); node.classList.remove("hidden"); node.textContent = `已完成：${result.imported_count} 条排单已按导游分配，可在下方选择频道。`;
     toast("批量派单完成");
   } catch (error) { toast(error.message); }
 });
