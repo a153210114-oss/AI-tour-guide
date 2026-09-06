@@ -23,7 +23,7 @@ document.querySelectorAll("[data-guide-preference]").forEach((select) => {
 });
 function t(key) { return guideUi[guideProfile.uiLanguage]?.[key] ?? guideUi["en-AU"][key]; }
 function applyGuideLanguage() {
-  document.documentElement.lang = guideProfile.uiLanguage; document.title = guideProfile.uiLanguage === "zh-CN" ? "导游控制台 · Tour Companion" : "Guide Console · Tour Companion";
+  document.documentElement.lang = guideProfile.uiLanguage; document.title = guideProfile.uiLanguage === "zh-CN" ? "导游控制台 · ALONORA" : "Guide Console · ALONORA";
   document.querySelectorAll("[data-guide-i18n]").forEach((el) => { el.textContent = t(el.dataset.guideI18n); });
   document.querySelectorAll("[data-guide-i18n-aria]").forEach((el) => el.setAttribute("aria-label", t(el.dataset.guideI18nAria)));
   document.querySelectorAll("[data-guide-i18n-alt]").forEach((el) => el.setAttribute("alt", t(el.dataset.guideI18nAlt)));
