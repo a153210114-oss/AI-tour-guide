@@ -4,6 +4,7 @@ const SUPPORTED = { "en-AU": "en", "zh-CN": "zh", "zh-HK": "zh", "yue-HK": "yue"
 
 const state = globalThis.__alonoraState ||= {
   visitors: {}, questions: [], ratings: [],
+  company: { name: "ALONORA Demo Tours", logo_data_url: "", guides: [{ id: "guide-alex-001", number: "G-001", name: "Alex Chen", route: "Great Ocean Road · Day Tour", session_id: SESSION_ID }] },
 };
 
 const now = () => new Date().toISOString();
@@ -61,11 +62,25 @@ async function api(request, env, url) {
   if (request.method === "GET" && path === "/api/health") return json({ ok: true, mode: "hosted-prototype", translation: providerStatus });
   if (request.method === "GET" && path === "/api/config") return json({ mobile_base_url: url.origin, session_id: SESSION_ID });
   if (request.method === "GET" && path === "/api/translation/status") return json(providerStatus);
+  if (request.method === "GET" && path === "/api/company") return json(state.company);
   if (request.method === "GET" && parts.length === 3 && parts[0] === "api" && parts[1] === "sessions") return parts[2] === SESSION_ID ? json(snapshot()) : error("Tour session not found", 404);
   if (request.method === "GET" && parts.length === 4 && parts[0] === "api" && parts[1] === "sessions" && parts[3] === "narration") return parts[2] === SESSION_ID ? json(narration()) : error("Tour session not found", 404);
 
   if (request.method !== "POST") return error("Not found", 404);
   const payload = await body(request);
+  if (path === "/api/company/profile") {
+    state.company.name = String(payload.name || "").trim() || state.company.name;
+    if (typeof payload.logo_data_url === "string") state.company.logo_data_url = payload.logo_data_url.slice(0, 700000);
+    return json(state.company);
+  }
+  if (path === "/api/company/guides") {
+    const number = String(payload.number || "").trim();
+    const name = String(payload.name || "").trim();
+    if (!number || !name) return error("Guide number and name are required", 422);
+    if (state.company.guides.some((guide) => guide.number.toLowerCase() === number.toLowerCase())) return error("Guide number already exists", 409);
+    const guide = { id: id("guide"), number, name, route: String(payload.route || "").trim() || "Unassigned", session_id: SESSION_ID };
+    state.company.guides.push(guide); return json(guide, 201);
+  }
   if (path === "/api/translation/client-secret") {
     if (!configured) return error("OpenAI translation is not configured", 503);
     if (!SUPPORTED[payload.target_locale]) return error("Unsupported target language", 422);

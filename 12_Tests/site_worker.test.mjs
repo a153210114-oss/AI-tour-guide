@@ -28,3 +28,14 @@ test("serves static assets through the Sites binding", async () => {
   assert.equal(await (await call("/")).text(), "/index.html");
   assert.equal(await (await call("/guide.html")).text(), "/guide.html");
 });
+
+test("supports company identity, unique guide numbers and QR assignments", async () => {
+  const profile = await (await call("/api/company/profile", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ name: "Ocean Road Tours", logo_data_url: "data:image/png;base64,AA==" }) })).json();
+  assert.equal(profile.name, "Ocean Road Tours");
+  const created = await call("/api/company/guides", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ number: "G-900", name: "Mei", route: "Phillip Island" }) });
+  assert.equal(created.status, 201);
+  const duplicate = await call("/api/company/guides", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ number: "g-900", name: "Another guide" }) });
+  assert.equal(duplicate.status, 409);
+  const company = await (await call("/api/company")).json();
+  assert.ok(company.guides.some((guide) => guide.number === "G-900" && guide.session_id === "gor-live-001"));
+});
