@@ -5,10 +5,12 @@ from datetime import datetime
 from importlib import import_module
 
 agency = import_module("13_Commercial.agency.assignment")
+location_permission = import_module("09_Runtime.tour_session.location_permission")
 AssignmentStatus = agency.AssignmentStatus
 CompanyAssignment = agency.CompanyAssignment
 CompanyProductVersion = agency.CompanyProductVersion
 LanguageChannels = agency.LanguageChannels
+DriverLocationAuthorization = location_permission.DriverLocationAuthorization
 
 
 @dataclass(frozen=True)
@@ -28,6 +30,7 @@ class CompanyTourSession:
     autoplay_policy_id: str | None
     languages: LanguageChannels
     offline_bundle_id: str
+    location_authorized_by_driver_at: datetime
 
 
 def start_company_tour(
@@ -38,6 +41,7 @@ def start_company_tour(
     actor_id: str,
     started_at: datetime,
     offline_bundle_id: str,
+    location_authorization: DriverLocationAuthorization,
 ) -> CompanyTourSession:
     if assignment.status is not AssignmentStatus.ACCEPTED:
         raise ValueError("assignment must be accepted before tour start")
@@ -54,6 +58,10 @@ def start_company_tour(
         raise ValueError("assignment does not match the published product version")
     if not offline_bundle_id:
         raise ValueError("a downloaded offline bundle is required")
+    if not location_authorization.authorizes(
+        assignment.driver_id, assignment.assignment_id
+    ):
+        raise PermissionError("assigned driver location authorization is required")
     return CompanyTourSession(
         session_id=session_id,
         assignment_id=assignment.assignment_id,
@@ -70,5 +78,5 @@ def start_company_tour(
         autoplay_policy_id=product.autoplay_policy_id,
         languages=product.languages,
         offline_bundle_id=offline_bundle_id,
+        location_authorized_by_driver_at=location_authorization.granted_at,
     )
-

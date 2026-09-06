@@ -5,6 +5,7 @@ from unittest import TestCase
 agency = import_module("13_Commercial.agency.assignment")
 runtime = import_module("09_Runtime.tour_session.company_start")
 autoplay = import_module("08_Audio.output_router.autoplay_policy")
+location = import_module("09_Runtime.tour_session.location_permission")
 
 
 class CompanyAssignmentRuntimeTests(TestCase):
@@ -21,12 +22,16 @@ class CompanyAssignmentRuntimeTests(TestCase):
             "driver-1", None, "vehicle-7", self.now, self.now + timedelta(hours=13),
             ("pickup-cbd",),
         )
+        self.location_authorization = location.DriverLocationAuthorization(
+            "driver-1", "assignment-1"
+        ).grant("driver-1", self.now)
 
     def test_assignment_is_source_of_locked_runtime_product(self):
         accepted = self.assignment.accept("driver-1", self.now)
         session = runtime.start_company_tour(
             session_id="session-1", assignment=accepted, product=self.product,
             actor_id="driver-1", started_at=self.now, offline_bundle_id="bundle-1",
+            location_authorization=self.location_authorization,
         )
         self.assertEqual(session.locked_product_version, "1.2")
         self.assertEqual(session.route_id, "great-ocean-road")
@@ -37,7 +42,27 @@ class CompanyAssignmentRuntimeTests(TestCase):
             runtime.start_company_tour(
                 session_id="session-1", assignment=self.assignment, product=self.product,
                 actor_id="driver-1", started_at=self.now, offline_bundle_id="bundle-1",
+                location_authorization=self.location_authorization,
             )
+
+    def test_driver_must_explicitly_authorize_location_before_start(self):
+        accepted = self.assignment.accept("driver-1", self.now)
+        not_requested = location.DriverLocationAuthorization("driver-1", "assignment-1")
+        with self.assertRaises(PermissionError):
+            runtime.start_company_tour(
+                session_id="session-1", assignment=accepted, product=self.product,
+                actor_id="driver-1", started_at=self.now, offline_bundle_id="bundle-1",
+                location_authorization=not_requested,
+            )
+
+    def test_location_authorization_is_driver_and_assignment_specific(self):
+        with self.assertRaises(PermissionError):
+            location.DriverLocationAuthorization(
+                "driver-1", "assignment-1"
+            ).grant("dispatcher-1", self.now)
+        self.assertFalse(self.location_authorization.authorizes("driver-1", "assignment-2"))
+        revoked = self.location_authorization.revoke("driver-1", self.now)
+        self.assertFalse(revoked.authorizes("driver-1", "assignment-1"))
 
     def test_reassignment_requires_new_driver_acceptance(self):
         reassigned = self.assignment.reassign_driver("driver-2")

@@ -19,10 +19,17 @@ where that assigned tour is currently operating.
 2. Operations creates a dated assignment for a driver/guide and vehicle.
 3. The assignee accepts the assignment.
 4. At tour start, the assignee selects the assignment when more than one is eligible.
-5. Runtime creates a Tour Session locked to that Product Version.
-6. The offline bundle loads route, stops, content references, language channels and
+5. The assigned driver explicitly authorizes location access for this assignment.
+6. Runtime creates a Tour Session locked to that Product Version.
+7. The offline bundle loads route, stops, content references, language channels and
    autoplay rules.
-7. GPS, direction, speed, sequence and recognition advance the session.
+8. GPS, direction, speed, sequence and recognition advance the session.
+
+Company dispatch does not grant location permission. Before authorization, the driver can
+view and accept an assignment, but location recognition and autoplay remain unavailable.
+Permission state must distinguish not requested, granted, denied, device restricted and
+revoked. Consent is specific to the assigned driver and assignment, can be revoked, and
+must not be reused after reassignment.
 
 Editing a product does not mutate an active Tour Session. A new Product Version applies
 to a future assignment unless operations explicitly migrates an unstarted assignment.
@@ -35,4 +42,4 @@ to a future assignment unless operations explicitly migrates an unstarted assign
 - Temporary stops are session events, not permanent product changes.
 - Offline start is supported after the assignment bundle has been downloaded.
 - Emergency stop and mute always override autoplay.
-
+- Revoking location permission stops location collection, recognition and autoplay.
