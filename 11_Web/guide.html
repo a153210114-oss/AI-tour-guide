@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#11251f" />
+    <title>Guide Console · Tour Companion</title>
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body data-view="guide">
+    <header class="topbar">
+      <a href="/" class="wordmark"><span>TC</span> Tour Companion</a>
+      <div class="live-pill"><i></i> Live session</div>
+    </header>
+    <div class="app-shell">
+      <nav class="side-nav" aria-label="Guide sections">
+        <div class="guide-profile"><div class="avatar">AC</div><div><strong>Alex Chen</strong><span>Driver-guide</span></div></div>
+        <button data-panel="today">Today</button>
+        <button class="active" data-panel="live">Live Tour <span class="nav-count" id="visitor-count">0</span></button>
+        <button data-panel="channels">Visitor Channels</button>
+        <button data-panel="review">Review <span class="nav-count" id="review-count">0</span></button>
+        <button data-panel="packs">My Packs</button>
+        <div class="driving-note">Driving mode<br /><strong>Audio first · screen optional</strong></div>
+      </nav>
+      <main class="guide-main">
+        <section class="panel hidden" id="today-panel"><p class="eyebrow">TODAY</p><h1>Great Ocean Road</h1><div class="empty-card">Pickup complete · 11 stops · returning 7:30 pm</div></section>
+        <section class="panel" id="live-panel">
+          <div class="section-heading"><div><p class="eyebrow">LIVE TOUR</p><h1 id="route-name">Great Ocean Road</h1></div><button class="icon-button" id="refresh-session" aria-label="Refresh session">↻</button></div>
+          <div class="live-grid">
+            <article class="now-card">
+              <div class="now-top"><span class="status-dot">NOW</span><span id="current-topic">Current story</span></div>
+              <p class="place-kicker">Current place</p><h2 id="current-place">Twelve Apostles</h2>
+              <p class="narrative-preview">Waves, limestone and time — the story playing across every visitor channel.</p>
+              <div class="audio-actions"><button class="primary" id="guide-test-tone">▶ Test guide earpiece</button><button class="secondary" id="mute-all">Mute</button></div>
+              <div class="device-status" id="device-status">Audio route follows this device’s system settings.</div>
+            </article>
+            <aside class="join-card">
+              <p class="eyebrow">JOIN THIS TOUR</p><div class="qr-frame"><img id="join-qr" alt="QR code to join this tour" /></div>
+              <h3 id="join-code">GOR-4821</h3><p>Visitors scan once. Listening is optional; questions and rating stay available.</p>
+              <button class="text-button" id="copy-link">Copy visitor link</button>
+            </aside>
+          </div>
+          <section class="queue-section"><div class="section-heading"><div><p class="eyebrow">ASK THE GUIDE</p><h2>Visitor queue</h2></div><span class="queue-badge" id="question-count">0 waiting</span></div><div id="question-list" class="question-list"><div class="empty-card">No questions yet. Keep your eyes on the road.</div></div></section>
+        </section>
+        <section class="panel hidden" id="channels-panel"><p class="eyebrow">VISITOR CHANNELS</p><h1>Personal audio</h1><div class="empty-card" id="channel-summary">No visitors connected yet.</div><div class="device-card"><div><h2>Guide audio output</h2><p>Connect Bluetooth first, then choose an output when your browser supports it.</p></div><button class="primary" id="choose-output">Choose output</button><audio id="test-audio"></audio><p id="output-support" class="quiet"></p></div></section>
+        <section class="panel hidden" id="review-panel"><p class="eyebrow">TOUR REVIEW</p><h1>Visitor engagement</h1><div class="review-grid"><div class="metric"><span>Average</span><strong id="average-rating">—</strong></div><div class="metric"><span>Ratings</span><strong id="rating-count">0</strong></div><div class="metric"><span>Questions</span><strong id="questions-total">0</strong></div></div><div id="rating-list" class="rating-list"><div class="empty-card">Ratings will appear here during the tour.</div></div></section>
+        <section class="panel hidden" id="packs-panel"><p class="eyebrow">MY PACKS</p><h1>Ready for today</h1><div class="pack-card"><span class="pack-icon">GOR</span><div><h2>Great Ocean Road Essentials</h2><p>11 places · 6 languages · local prototype content</p></div><span class="ready">Ready</span></div></section>
+      </main>
+    </div>
+    <div class="toast" id="toast" role="status"></div>
+    <script src="/shared.js"></script><script src="/guide.js"></script>
+  </body>
+</html>

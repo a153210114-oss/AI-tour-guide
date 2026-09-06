@@ -3,6 +3,7 @@ name = "ai-tour-guide"
 version = "0.1.0"
 description = "Screen-light recognition and matching core for tour guides"
 requires-python = ">=3.9"
+dependencies = ["qrcode>=7.4,<9"]
 
 [tool.pytest.ini_options]
 pythonpath = ["."]

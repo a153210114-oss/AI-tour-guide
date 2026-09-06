@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#f4efe4" /><title>Visitor · Tour Companion</title>
+    <link rel="manifest" href="/manifest.webmanifest" /><link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body data-view="visitor">
+    <header class="visitor-header"><a href="/" class="wordmark"><span>TC</span></a><div class="tour-mini"><strong id="visitor-route">Great Ocean Road</strong><span><i></i> Live with Alex</span></div><label class="language-control"><span class="sr-only">Language</span><select id="language-select"></select></label></header>
+    <main class="visitor-main">
+      <section class="place-hero"><p class="eyebrow" data-i18n="nowAt">NOW AT</p><h1 id="visitor-place">Twelve<br />Apostles</h1><p id="visitor-topic">How the stacks were formed</p><div class="coast-line"></div></section>
+      <section class="three-actions" aria-label="Tour actions">
+        <button class="action-card active" data-action="listen"><span class="action-icon">▶</span><strong data-i18n="listen">Listen</strong><small data-i18n="listenHint">Current story</small></button>
+        <button class="action-card" data-action="ask"><span class="action-icon">?</span><strong data-i18n="ask">Ask guide</strong><small data-i18n="askHint">Send a question</small></button>
+        <button class="action-card" data-action="rate"><span class="action-icon">★</span><strong data-i18n="rate">Rate guide</strong><small data-i18n="rateHint">Share feedback</small></button>
+      </section>
+      <section class="visitor-panel" id="listen-view"><div class="player-card"><div class="wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><p id="narration-text">Loading today’s story…</p><button class="listen-button" id="play-narration"><span>▶</span><b data-i18n="play">Play narration</b></button><p class="quiet" id="speech-note"></p></div></section>
+      <section class="visitor-panel hidden" id="ask-view"><div class="form-card"><h2 data-i18n="askTitle">Ask Alex</h2><p data-i18n="askBody">Write in your language. The guide sees the original question and language.</p><textarea id="question-text" maxlength="280" data-i18n-placeholder="questionPlaceholder" placeholder="What would you like to know?"></textarea><button class="primary full" id="send-question" data-i18n="send">Send to guide</button><div id="answer-status" class="answer-status hidden"></div></div></section>
+      <section class="visitor-panel hidden" id="rate-view"><div class="form-card"><h2 data-i18n="rateTitle">How was Alex?</h2><p data-i18n="rateBody">Your feedback appears in the private tour review.</p><div class="stars" id="stars" aria-label="Rating out of 5"></div><div class="tag-list" id="rating-tags"></div><textarea id="rating-comment" maxlength="280" data-i18n-placeholder="commentPlaceholder" placeholder="Anything you especially enjoyed?"></textarea><button class="primary full" id="send-rating" data-i18n="submitRating">Submit rating</button></div></section>
+    </main>
+    <div class="toast" id="toast" role="status"></div>
+    <script src="/shared.js"></script><script src="/visitor.js"></script>
+  </body>
+</html>
