@@ -4,7 +4,7 @@ const SUPPORTED = { "en-AU": "en", "zh-CN": "zh", "zh-HK": "zh", "yue-HK": "yue"
 
 const state = globalThis.__alonoraState ||= {
   visitors: {}, questions: [], ratings: [],
-  company: { name: "ALONORA Demo Tours", logo_data_url: "", guides: [{ id: "guide-alex-001", number: "G-001", name: "Alex Chen", route: "Great Ocean Road · Day Tour", session_id: SESSION_ID }] },
+  company: { name: "ALONORA Demo Tours", logo_data_url: "", guides: [{ id: "guide-alex-001", number: "G-001", name: "Alex Chen", route: "Great Ocean Road · Day Tour", session_id: SESSION_ID }], dispatches: [] },
 };
 
 const now = () => new Date().toISOString();
@@ -80,6 +80,30 @@ async function api(request, env, url) {
     if (state.company.guides.some((guide) => guide.number.toLowerCase() === number.toLowerCase())) return error("Guide number already exists", 409);
     const guide = { id: id("guide"), number, name, route: String(payload.route || "").trim() || "Unassigned", session_id: SESSION_ID };
     state.company.guides.push(guide); return json(guide, 201);
+  }
+  if (path === "/api/company/dispatches/import") {
+    const rows = Array.isArray(payload.rows) ? payload.rows : [];
+    if (!rows.length) return error("Dispatch rows are required", 422);
+    if (rows.length > 200) return error("Maximum 200 dispatch rows per import", 422);
+    const imported = rows.map((row, index) => {
+      const guideNumber = String(row.guide_number || "").trim();
+      const guideName = String(row.guide_name || "").trim();
+      if (!guideNumber || !guideName) throw new Error(`Row ${index + 1}: guide number and name are required`);
+      let guide = state.company.guides.find(item => item.number.toLowerCase() === guideNumber.toLowerCase());
+      if (!guide) {
+        guide = { id: id("guide"), number: guideNumber, name: guideName, route: String(row.route || "").trim() || "Unassigned", session_id: SESSION_ID };
+        state.company.guides.push(guide);
+      }
+      const dispatch = {
+        id: id("dispatch"), service_date: String(row.service_date || "").trim(), vehicle: String(row.vehicle || "").trim(),
+        guide_id: guide.id, guide_number: guide.number, guide_name: guide.name,
+        route: String(row.route || "").trim() || "Unassigned", product: String(row.product || "").trim() || "Day tour",
+        duration_days: Math.max(1, Number(row.duration_days) || 1), pickup: String(row.pickup || "").trim(),
+        session_id: SESSION_ID, status: "assigned", created_at: now(),
+      };
+      guide.route = dispatch.route; state.company.dispatches.push(dispatch); return dispatch;
+    });
+    return json({ imported_count: imported.length, dispatches: imported, company: state.company }, 201);
   }
   if (path === "/api/translation/client-secret") {
     if (!configured) return error("OpenAI translation is not configured", 503);

@@ -39,3 +39,16 @@ test("supports company identity, unique guide numbers and QR assignments", async
   const company = await (await call("/api/company")).json();
   assert.ok(company.guides.some((guide) => guide.number === "G-900" && guide.session_id === "gor-live-001"));
 });
+
+test("imports a company dispatch batch and creates missing guides", async () => {
+  const rows = [
+    { service_date: "2026-09-07", vehicle: "BUS-18", guide_number: "G-018", guide_name: "Ming", route: "Great Ocean Road", product: "Day tour", duration_days: 1, pickup: "CBD" },
+    { service_date: "2026-09-07", vehicle: "BUS-26", guide_number: "G-026", guide_name: "Lina", route: "Phillip Island", product: "Two-day tour", duration_days: 2, pickup: "Airport" },
+  ];
+  const response = await call("/api/company/dispatches/import", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ rows }) });
+  assert.equal(response.status, 201);
+  const result = await response.json();
+  assert.equal(result.imported_count, 2);
+  assert.equal(result.dispatches[1].duration_days, 2);
+  assert.ok(result.company.guides.some(guide => guide.number === "G-026"));
+});
