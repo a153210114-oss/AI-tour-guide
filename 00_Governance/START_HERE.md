@@ -3,11 +3,22 @@
 ## Authority order
 
 1. `AI_TOUR_GUIDE_PROJECT_BASELINE_V1.md`
-2. `MASTER_DEVELOPMENT_PLAN.md`
-3. `../docs/WORK_ORDER_NO001.md`
-4. Actual code and test evidence
+2. `PRODUCT_MOAT.md`
+3. `MASTER_DEVELOPMENT_PLAN.md`
+4. `../docs/WORK_ORDER_NO001.md`
+5. Actual code and test evidence
 
 Chat history is context, not the source of truth.
+
+## Product center
+
+The product center is the human experience, not the destination database, a single AI model, or a generic self-guided tour app.
+
+System relationship:
+
+`Guide <-> AI System <-> Visitors`
+
+Every major product or architecture decision must be checked against `PRODUCT_MOAT.md`.
 
 ## Current stage
 
