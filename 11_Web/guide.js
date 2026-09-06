@@ -42,7 +42,7 @@ let visitorUrl = `${location.origin}/visitor.html?session=${SESSION_ID}`;
 async function configureJoinLink() {
   const config = await api("/api/config");
   visitorUrl = `${config.mobile_base_url}/visitor.html?session=${SESSION_ID}`;
-  document.getElementById("join-qr").src = `/api/qr?value=${encodeURIComponent(visitorUrl)}`;
+  document.getElementById("join-qr").src = `https://quickchart.io/qr?size=320&margin=2&text=${encodeURIComponent(visitorUrl)}`;
 }
 
 async function refresh() {

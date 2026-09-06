@@ -1,0 +1,8 @@
+{
+  "name": "alonora-ai-tour-guide",
+  "private": true,
+  "scripts": {
+    "build": "node scripts/build-site.mjs",
+    "test:worker": "node --test 12_Tests/site_worker.test.mjs"
+  }
+}
