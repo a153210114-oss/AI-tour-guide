@@ -9,6 +9,48 @@ Do not begin by asking Tourism Australia for a national endorsement. First estab
 Victoria pilot with measurable visitor and operator outcomes, then take that evidence to
 the national body.
 
+## Verified contact map
+
+| Priority | Organisation / department | Contact | What to request |
+|---|---|---|---|
+| 1 | Great Ocean Road Regional Tourism — Industry Development | Jo Birley, Industry Development Manager; `jo@gort.com.au`; `0448 448 666` | Regional pilot, operator introductions, training collaboration, marketing partnership and access to licensed partner assets |
+| 2 | Visit Victoria — Industry Engagement & Programs / Product Development | `product@visitvictoria.com.au`; head office `+61 3 9002 2222` | Route the proposal to the product-development owner; discuss official-source licensing, content review, industry development and a Victoria pilot |
+| 3 | Tourism Australia — Industry Relations for SA, TAS, VIC & Youth | Rachael Glendinning, Industry Relations Manager; `rglendinning@tourism.australia.com`; `+61 438 488 286` | Advice on national industry pathways, Aussie Specialist integration/reference and the evidence required for future partnership |
+| 4 | Tourism Australia — general partnerships/marketing | `ask.us@tourism.australia.com`; `+61 2 9360 1111` | Use if the named industry contact changes; request routing to Industry Relations rather than a consumer travel enquiry |
+| 5 | Tour Guides Australia — training | `training@tga.org.au` | Discuss tailored on-site guide training, course mapping, approved training operators and an accreditation pathway |
+| 6 | Tour Guides Australia — partnership/business development | Ben McAuliffe; `businessdevelopment@tga.org.au` | Explore product partnership, assessment evidence integration and a verified industry badge/accreditation handoff |
+| 7 | Tour Guides Australia — administration/accreditation routing | Terri Montalto; `office@tga.org.au` | Confirm the current accreditation application owner and verification process |
+| 8 | Visit Victoria — ATDW Support | `atdwsupport@visitvictoria.com.au`; `1300 306 366` | Establish an eligible official operator listing after the visitor-facing service and ABN are ready |
+
+Official verification sources:
+
+- GORRT contact and training: https://greatoceanroadtourism.org.au/training-and-development/
+- Visit Victoria industry development: https://corporate.visitvictoria.com/resources/industry-development
+- Tourism Australia Aussie Specialist and VIC industry contact: https://www.tourism.australia.com/en/resources/industry-resources/industry-programs/aussie-specialist-program.html
+- Tourism Australia general contact: https://www.tourism.australia.com/en/contact-us.html
+- Tour Guides Australia contacts: https://tga.org.au/contact/
+- Tour Guides Australia training: https://tga.org.au/about/become-a-guide/
+- Visit Victoria ATDW support: https://corporate.visitvictoria.com/resources/marketing-opportunities/about-atdw/atdw-listings-regional
+
+For Visit Victoria content or image reuse, request written permission through the Product
+team and the official contact channel. The public website is generally limited to personal,
+non-commercial use; do not scrape or copy its content into the commercial knowledge pack
+without a licence. Legal notice: https://corporate.visitvictoria.com/legal-notices
+
+## Contact sequence
+
+Send one tailored message at a time:
+
+1. Jo Birley at GORRT — ask for a 30-minute regional-pilot conversation.
+2. Visit Victoria Product team — reference the GORRT discussion or regional operator pilot.
+3. Tour Guides Australia Training + Business Development — ask them to separate training,
+   platform completion records and TGA-issued accreditation.
+4. Tourism Australia VIC Industry Relations — present the aligned Victoria pilot, not an
+   unsupported request for national endorsement.
+
+Do not copy all organisations into one first email. Record each reply, referred contact,
+permission scope and next action in the partnership ledger.
+
 1. **Visit Victoria — Industry Engagement & Programs**
    - Best first contact for a new Melbourne/Victoria tourism product.
    - Send product news and a pilot proposal to `product@visitvictoria.com.au`.
