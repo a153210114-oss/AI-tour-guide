@@ -1,0 +1,17 @@
+{
+  "route_id": "melbourne-city-core",
+  "knowledge_pack_id": "knowledge.au.vic.melbourne.seed-r1",
+  "status": "recognition-seed-coordinates-require-field-verification",
+  "places": [
+    {"place_id":"flinders-street-station","name":"Flinders Street Station","latitude":-37.8183,"longitude":144.9671,"aliases":["Flinders Station","弗林德斯街车站"],"visual_labels":["yellow facade","green dome","clocks","railway station"]},
+    {"place_id":"federation-square","name":"Federation Square","latitude":-37.8179,"longitude":144.9691,"aliases":["Fed Square","联邦广场"],"visual_labels":["angular facade","public square","geometric panels","digital screen"]},
+    {"place_id":"shrine-of-remembrance","name":"Shrine of Remembrance","latitude":-37.8305,"longitude":144.9734,"aliases":["The Shrine","战争纪念馆"],"visual_labels":["stone memorial","pyramid roof","columns","monument"]},
+    {"place_id":"royal-exhibition-building","name":"Royal Exhibition Building","latitude":-37.8047,"longitude":144.9717,"aliases":["REB","皇家展览馆"],"visual_labels":["dome","cream facade","arched windows","formal gardens"]},
+    {"place_id":"parliament-house-victoria","name":"Parliament House Victoria","latitude":-37.8110,"longitude":144.9730,"aliases":["Victorian Parliament","维多利亚州议会大厦"],"visual_labels":["stone steps","colonnade","classical facade","parliament"]},
+    {"place_id":"state-library-victoria","name":"State Library Victoria","latitude":-37.8098,"longitude":144.9652,"aliases":["State Library","维多利亚州立图书馆"],"visual_labels":["columned facade","library","forecourt","statues"]},
+    {"place_id":"immigration-museum","name":"Immigration Museum","latitude":-37.8192,"longitude":144.9605,"aliases":["Old Customs House","移民博物馆"],"visual_labels":["classical facade","columns","customs house","museum"]},
+    {"place_id":"old-melbourne-gaol","name":"Old Melbourne Gaol","latitude":-37.8078,"longitude":144.9654,"aliases":["Old Melbourne Jail","墨尔本旧监狱"],"visual_labels":["bluestone","prison","barred windows","gaol"]},
+    {"place_id":"ngv","name":"NGV International","latitude":-37.8226,"longitude":144.9689,"aliases":["National Gallery of Victoria","维多利亚国家美术馆"],"visual_labels":["water wall","arched entrance","gallery","stone facade"]},
+    {"place_id":"queen-victoria-market","name":"Queen Victoria Market","latitude":-37.8076,"longitude":144.9568,"aliases":["Queen Vic Market","QVM","维多利亚女王市场"],"visual_labels":["market sheds","heritage market","produce stalls","clock tower"]}
+  ]
+}

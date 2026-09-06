@@ -1,0 +1,13 @@
+{
+  "pack_id": "knowledge.au.vic.great-ocean-road.r1",
+  "status": "skeleton-not-source-verified",
+  "places": [
+    {"place_id": "twelve-apostles", "facts": []},
+    {"place_id": "loch-ard-gorge", "facts": []},
+    {"place_id": "gibson-steps", "facts": []}
+  ],
+  "fact_contract": {
+    "required": ["fact_id", "claim", "source", "source_grade", "last_verified_at"]
+  }
+}
+

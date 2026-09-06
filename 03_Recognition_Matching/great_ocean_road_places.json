@@ -1,0 +1,16 @@
+{
+  "route_id": "great-ocean-road",
+  "status": "coordinates-require-field-verification",
+  "places": [
+    {"place_id": "torquay", "name": "Torquay", "latitude": -38.3307, "longitude": 144.3265, "aliases": [], "visual_labels": ["town", "beach", "surf"]},
+    {"place_id": "bells-beach", "name": "Bells Beach", "latitude": -38.3692, "longitude": 144.2812, "aliases": [], "visual_labels": ["surf", "beach", "cliffs"]},
+    {"place_id": "memorial-arch", "name": "Memorial Arch", "latitude": -38.4650, "longitude": 144.0880, "aliases": ["Great Ocean Road Memorial Arch"], "visual_labels": ["arch", "road", "statue"]},
+    {"place_id": "apollo-bay", "name": "Apollo Bay", "latitude": -38.7590, "longitude": 143.6722, "aliases": [], "visual_labels": ["town", "bay", "beach", "harbour"]},
+    {"place_id": "gibson-steps", "name": "Gibson Steps", "latitude": -38.6684, "longitude": 143.1128, "aliases": [], "visual_labels": ["steps", "cliffs", "beach", "sea stacks"]},
+    {"place_id": "twelve-apostles", "name": "Twelve Apostles", "latitude": -38.6621, "longitude": 143.1051, "aliases": ["12 Apostles"], "visual_labels": ["limestone", "sea stacks", "cliffs"]},
+    {"place_id": "loch-ard-gorge", "name": "Loch Ard Gorge", "latitude": -38.6470, "longitude": 143.0700, "aliases": [], "visual_labels": ["gorge", "beach", "cliffs"]},
+    {"place_id": "the-grotto", "name": "The Grotto", "latitude": -38.6188, "longitude": 142.9125, "aliases": ["Grotto"], "visual_labels": ["arch", "cave", "rock pool", "ocean"]},
+    {"place_id": "london-bridge", "name": "London Bridge", "latitude": -38.6214, "longitude": 142.9310, "aliases": ["London Arch"], "visual_labels": ["limestone", "arch", "ocean"]},
+    {"place_id": "bay-of-islands", "name": "Bay of Islands", "latitude": -38.5844, "longitude": 142.8242, "aliases": [], "visual_labels": ["bay", "sea stacks", "cliffs"]}
+  ]
+}

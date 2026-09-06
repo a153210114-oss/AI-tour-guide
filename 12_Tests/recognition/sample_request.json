@@ -1,0 +1,15 @@
+{
+  "session_id": "gor-field-test-001",
+  "time": "2026-09-06T12:00:00+10:00",
+  "motion_state": "stopped",
+  "gps": {"latitude": -38.6620, "longitude": 143.1050},
+  "route_id": "great-ocean-road",
+  "previous_place_id": "gibson-steps",
+  "next_expected_places": ["twelve-apostles", "loch-ard-gorge"],
+  "vision": {
+    "labels": ["limestone", "sea stacks", "cliffs"],
+    "landmark_candidates": {"twelve-apostles": 0.92}
+  },
+  "guide_voice_hint": null
+}
+

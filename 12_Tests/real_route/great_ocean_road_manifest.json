@@ -1,0 +1,18 @@
+{
+  "dataset_id": "gor-recognition-r1",
+  "status": "awaiting-real-images",
+  "rule": "One or more original field images per place; no test-specific matching rules.",
+  "cases": [
+    {"expected_place_id": "torquay", "images": []},
+    {"expected_place_id": "bells-beach", "images": []},
+    {"expected_place_id": "memorial-arch", "images": []},
+    {"expected_place_id": "apollo-bay", "images": []},
+    {"expected_place_id": "gibson-steps", "images": []},
+    {"expected_place_id": "twelve-apostles", "images": []},
+    {"expected_place_id": "loch-ard-gorge", "images": []},
+    {"expected_place_id": "the-grotto", "images": []},
+    {"expected_place_id": "london-bridge", "images": []},
+    {"expected_place_id": "bay-of-islands", "images": []}
+  ]
+}
+
